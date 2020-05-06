@@ -6,7 +6,7 @@ jobs:
 - ${{ parameters.jobs }}
 - job: extrajob
   dependsOn:
-  - ${{ each job in parameters.jobs }}
+  - ${{ each job in parameters.jobs }}:
       ${{ job.job }}
   steps:
   - script: echo extra step
