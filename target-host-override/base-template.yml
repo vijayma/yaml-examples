@@ -1,0 +1,20 @@
+parameters:
+- name: deploySteps # the name of the parameter is deploySteps
+  type: stepList # data type is StepList
+  default: [] # default value of deploySteps
+
+resources:
+  containers:
+    - container: wincontainer
+      image: mcr.microsoft.com/windows/servercore:ltsc2019      
+
+stages:
+- stage: secure_deploy
+  pool: StaticOrgPool  
+  jobs:
+  - job: secure_deploy
+    container: wincontainer
+    steps:
+      - ${{ if not(containsValue(parameters.deploySteps.*.target, 'host')) }}:  # Make sure we target=host has not nbeen set for any task.      
+        - ${{ parameters.deploySteps }}                                         # Run the supplied deployment steps 
+ 
