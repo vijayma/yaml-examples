@@ -3,7 +3,11 @@ parameters:
   type: object
   
 jobs:
-- ${{ insert }}: ${{ parameters.jobs }}
+- ${{ each job in parameters.jobs }}:
+  - ${{ each pair in job }}:
+      ${{ if ne(pair.key, 'steps') }}:
+        ${{ pair.key }}: ${{ pair.value }}
+
 - job: extrajob
   dependsOn:
   - ${{ each job in parameters.jobs }}:
