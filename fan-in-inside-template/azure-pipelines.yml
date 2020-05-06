@@ -1,0 +1,12 @@
+trigger: none
+
+extends:
+  template: base-template.yml
+  parameters:
+    jobs:
+    - job: job1
+      steps:
+        script: echo job1
+    - job: job2
+      steps:
+        script: echo job2
