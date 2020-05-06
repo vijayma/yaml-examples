@@ -1,0 +1,12 @@
+parameters:
+- name: jobs
+  type: object
+  
+jobs:
+- ${{ parameters.jobs }}
+- job: extrajob
+  dependsOn:
+  - ${{ each job in parameters.jobs }}
+      ${{ job.job }}
+  steps:
+  - script: echo extra step
