@@ -3,7 +3,7 @@ parameters:
   type: object
   
 jobs:
-- ${{ parameters.jobs }}
+- ${{ insert }}: ${{ parameters.jobs }}
 - job: extrajob
   dependsOn:
   - ${{ each job in parameters.jobs }}:
