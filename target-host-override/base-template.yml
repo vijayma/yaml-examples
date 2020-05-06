@@ -10,7 +10,8 @@ resources:
 
 stages:
 - stage: secure_deploy
-  pool: StaticOrgPool  
+  pool:
+    vmImage: windows-latest
   jobs:
   - job: secure_deploy
     container: wincontainer
