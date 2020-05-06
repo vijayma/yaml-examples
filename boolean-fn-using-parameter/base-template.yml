@@ -6,7 +6,6 @@ steps:
 - script: |
     echo first step
     exit 1
-  continueOnError: eq(${{ parameters.environment }}, 'Dev')
+  continueOnError: ${{ eq(parameters.environment, 'Dev') }}
 
 - script: echo second step
- 
