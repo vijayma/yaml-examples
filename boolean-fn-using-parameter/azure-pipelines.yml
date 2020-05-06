@@ -3,4 +3,4 @@ trigger: none
 extends: 
   template: base-template.yml
   parameters:
-    environment: Dev
+    environment: Test
