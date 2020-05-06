@@ -1,0 +1,13 @@
+trigger: none
+
+extends:
+  template: base-template.yml
+  parameters:
+    deploySteps:  
+      - powershell: |
+          Write-Host "This should succeed and return container hostname"
+          Write-Host $env:computername
+      - powershell: |
+          Write-Host "This task should fail and should not return agent VMs hostname"
+          Write-Host $env:computername
+        target: host
