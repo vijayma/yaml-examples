@@ -1,16 +1,14 @@
 resources:
   repositories:
     - repository: self
-      type: git
+      type: github
       trigger:
         branches:
           include:
           - master
     - repository: second
-      type: git
-      name: second-repo
+      type: github
+      name: vijayma/second-repo
 
 steps:
 - script: echo hello world
-
-    
