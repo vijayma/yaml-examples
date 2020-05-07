@@ -10,6 +10,10 @@ resources:
       type: github
       name: vijayma/second-repo
       endpoint: vijayma
+      trigger:
+        branches:
+          include:
+            - master
 
 steps:
 - script: echo hello world
