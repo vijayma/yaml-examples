@@ -9,6 +9,7 @@ resources:
     - repository: second
       type: github
       name: vijayma/second-repo
+      endpoint: vijayma
 
 steps:
 - script: echo hello world
