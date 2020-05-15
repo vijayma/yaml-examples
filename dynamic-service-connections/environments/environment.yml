@@ -3,7 +3,7 @@ parameters:
   resourceGroupName: ''
   environment: ''
 
-jobs:
+steps:
 - deployment: Deploy
   displayName: Deploy
   environment: ${{ parameters.environment }}
