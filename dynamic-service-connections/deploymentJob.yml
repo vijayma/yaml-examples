@@ -1,7 +1,5 @@
 parameters:
   jobName: Deploy
-  azureServiceConnection: ''
-  resourceGroupName: ''
 
 jobs:
 - job: ${{ parameters.jobName }}
@@ -9,7 +7,7 @@ jobs:
 
   steps:
   - checkout: self
-  - script: echo ${{ parameters.azureServiceConnection }}
+  - script: echo $(azureServiceConnection)
 
 # replace the above with your deploymennt job
 # - deployment: ${{ parameters.jobName }}
