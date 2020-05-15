@@ -2,13 +2,6 @@ parameters:
   jobName: Deploy
 
 jobs:
-- job: ${{ parameters.jobName }}
-  displayName: ${{ parameters.jobName }}
-
-  steps:
-  - checkout: self
-  - script: echo $(azureServiceConnection)
-
 - deployment: ${{ parameters.jobName }}
   displayName: ${{ parameters.jobName }}
   environment: $(environment)
