@@ -1,3 +1,4 @@
-variables:
+parameters:
   azureServiceConnection: AvidXchange Enterprise DevQA (testproject)
+  resourceGroupName: AvidXchange CI RG
   

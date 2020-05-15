@@ -1,2 +1,3 @@
-variables:
+parameters:
   azureServiceConnection: AvidXchange Enterprise DevQA (broken)
+  resourceGroupName: AvidXchange QA RG

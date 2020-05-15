@@ -2,10 +2,3 @@ trigger: none
 
 extends:
   template: lifecycle.yml
-  parameters:
-    deploymentJobs:
-    - template: deploymentJob.yml
-      parameters:
-        jobName: 'Deploy'
-        azureServiceConnection: '$(azureServiceConnection)'
-        resourceGroupName: 'AX-Development-Lab-RG'

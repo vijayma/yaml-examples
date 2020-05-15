@@ -1,32 +1,21 @@
 parameters:
-  jobName: 'standard_arm'
-  poolName: 'global-agent-pool'
+  jobName: Deploy
   azureServiceConnection: ''
   resourceGroupName: ''
 
 jobs:
-
 - job: ${{ parameters.jobName }}
   displayName: ${{ parameters.jobName }}
-  pool:
-    name: ${{ parameters.poolName }}
 
   steps:
-  - checkout: self 
+  - checkout: self
+  - script: echo ${{ parameters.azureServiceConnection }}
 
-  - pwsh: |
-      if(Get-InstalledModule Az -ErrorAction SilentlyContinue) { 
-        Write-Host "Installing Az module"
-        Install-Module Az -Force -AllowClobber
-      }
-    displayName: Ensure Az Module is installed
-
-  - task: AzurePowerShell@5
-    displayName: 'Azure Powershell Test'
-    inputs:
-      azureSubscription: ${{ parameters.azureServiceConnection }}
-      ScriptType: InlineScript
-      azurePowerShellVersion: LatestVersion
-      pwsh: true
-      Inline: |
-        Get-AzContext
+# replace the above with your deploymennt job
+# - deployment: ${{ parameters.jobName }}
+#   displayName: ${{ parameters.jobName }}
+#   pool: ...
+#   environment: this can come in as a parameters to this temmplate
+#   ...
+#   steps:
+#   - ...

@@ -1,54 +1,21 @@
-parameters:
-- name: deploymentJobs
-  type: jobList
-  default: []
-
 variables:
   system.debug: true
-stages:
 
+stages:
 - stage: CI
   displayName: 'Deploy To CI'
 
   jobs:
-  - ${{ each job in parameters.deploymentJobs }}:
-    - deployment: ${{ job.name }}
-      displayName: '${{ job.displayName }}'
-      pool: ${{ coalesce(job.pool.name, 'global-agent-pool') }}
-      workspace:
-        clean: all
-      environment: CI
-      variables:
-        environment: ci
-      strategy:
-        runOnce:
-          deploy:
-            steps:
-            - pwsh: |
-                gci env:
-
-            - ${{ each step in job.steps }}:
-              - ${{ step }}
+  - template: deploymentJob.yml
+    parameters:
+    - jobName: Deploy
+    - template: parameters/ci.yml
 
 - stage: QA
   displayName: 'Deploy To QA'
   
   jobs:
-  - ${{ each job in parameters.deploymentJobs }}:
-    - deployment: ${{ job.name }}
-      displayName: '${{ job.displayName }}'
-      pool: ${{ coalesce(job.pool.name, 'global-agent-pool') }}
-      workspace:
-        clean: all
-      environment: QA
-      variables:
-        environment: qa
-      strategy:
-        runOnce:
-          deploy:
-            steps:
-            - pwsh: |
-                gci env:
-
-            - ${{ each step in job.steps }}:
-              - ${{ step }}
+  - template: deploymentJob.yml
+    parameters:
+    - jobName: Deploy
+    - template: parameters/qa.yml
