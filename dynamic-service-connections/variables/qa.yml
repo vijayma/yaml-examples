@@ -1,3 +1,4 @@
 variables:
-  azureServiceConnection: AvidXchange Enterprise DevQA (broken)
+  azureServiceConnection: QA Test Connection
   resourceGroupName: AvidXchange QA RG
+  environment: QA

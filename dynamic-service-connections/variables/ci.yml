@@ -1,4 +1,5 @@
 variables:
-  azureServiceConnection: AvidXchange Enterprise DevQA (testproject)
+  azureServiceConnection: CI Test Connection
   resourceGroupName: AvidXchange CI RG
+  environment: CI
   

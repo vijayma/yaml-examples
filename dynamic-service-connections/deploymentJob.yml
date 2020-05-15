@@ -9,11 +9,19 @@ jobs:
   - checkout: self
   - script: echo $(azureServiceConnection)
 
-# replace the above with your deploymennt job
-# - deployment: ${{ parameters.jobName }}
-#   displayName: ${{ parameters.jobName }}
-#   pool: ...
-#   environment: this can come in as a parameters to this temmplate
-#   ...
-#   steps:
-#   - ...
+- deployment: ${{ parameters.jobName }}
+  displayName: ${{ parameters.jobName }}
+  environment: $(environment)
+  strategy:
+    runOnce:
+      deploy:
+        steps:
+        - task: AzurePowerShell@5
+          displayName: 'Azure Powershell Test'
+          inputs:
+            azureSubscription: $(azureServiceConnection)
+            ScriptType: InlineScript
+            azurePowerShellVersion: LatestVersion
+            pwsh: true
+            Inline: |
+              Get-AzContext
