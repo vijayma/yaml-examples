@@ -8,7 +8,6 @@ stages:
   jobs:
   - template: deploymentJob.yml
     parameters:
-    - jobName: Deploy
     - template: parameters/ci.yml
 
 - stage: QA
@@ -17,5 +16,4 @@ stages:
   jobs:
   - template: deploymentJob.yml
     parameters:
-    - jobName: Deploy
     - template: parameters/qa.yml
