@@ -4,16 +4,16 @@ variables:
 stages:
 - stage: CI
   displayName: 'Deploy To CI'
+  variables:
+  - template: variables/ci.yml
 
   jobs:
   - template: deploymentJob.yml
-    parameters:
-    - template: parameters/ci.yml
 
 - stage: QA
   displayName: 'Deploy To QA'
+  variables:
+  - template: variables/qa.yml
   
   jobs:
   - template: deploymentJob.yml
-    parameters:
-    - template: parameters/qa.yml
