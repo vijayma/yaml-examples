@@ -1,0 +1,23 @@
+steps:
+- pwsh: |
+    $module = get-installedmodule Powershell-YAML -ErrorAction SilentlyContinue
+    if($module -eq $null) {
+    $psRepo = Get-PSRepository -Name "PSGallery"
+    if($psRepo.InstallationPolicy -ne "Trusted") {
+        Set-PSRepository -Name 'PSGallery' -InstallationPolicy Trusted
+    }
+    install-module -Name Powershell-YAML -AllowClobber
+    }
+    $envVarPath = "$(Pipeline.Workspace)/s/variables/$(environment).yml"
+    if(Test-Path $envVarPath) {
+        $vars = Get-Content -Raw $envVarPath | ConvertFrom-Yaml
+        foreach($var in $vars.variables.Keys) {
+            $val = $vars.variables[$var]
+            $currentVal = [Environment]::GetEnvironmentVariable($var.ToUpper().Replace(".", "_"))
+            if($currentVal -eq $null) {
+                Write-Host "Setting ${var} to ${val}"
+                Write-Host "##vso[task.setvariable variable=${var}]${val}"
+            }            
+        }
+    }
+  displayName: Inject variables
