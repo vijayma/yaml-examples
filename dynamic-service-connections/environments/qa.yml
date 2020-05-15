@@ -1,0 +1,6 @@
+extends:
+  template: environment.yml
+  parameters:
+    azureServiceConnection: QA Test Connection
+    resourceGroupName: QA Test RG
+    environment: QA

@@ -1,10 +1,12 @@
 parameters:
-  jobName: Deploy
+  azureServiceConnection: ''
+  resourceGroupName: ''
+  environment: ''
 
 jobs:
-- deployment: ${{ parameters.jobName }}
-  displayName: ${{ parameters.jobName }}
-  environment: $(environment)
+- deployment: Deploy
+  displayName: Deploy
+  environment: ${{ parameters.environment }}
   strategy:
     runOnce:
       deploy:
@@ -12,7 +14,7 @@ jobs:
         - task: AzurePowerShell@5
           displayName: 'Azure Powershell Test'
           inputs:
-            azureSubscription: $(azureServiceConnection)
+            azureSubscription: ${{ parameters.azureServiceConnection }}
             ScriptType: InlineScript
             azurePowerShellVersion: LatestVersion
             pwsh: true

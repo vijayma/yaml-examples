@@ -1,5 +1,0 @@
-variables:
-  azureServiceConnection: CI Test Connection
-  resourceGroupName: CI Test RG
-  environment: CI
-  

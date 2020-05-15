@@ -1,4 +1,0 @@
-variables:
-  azureServiceConnection: QA Test Connection
-  resourceGroupName: QA Test RG
-  environment: QA
