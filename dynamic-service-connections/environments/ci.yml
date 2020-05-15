@@ -1,5 +1,5 @@
-extends:
-  template: environment.yml
+steps:
+- template: environment.yml
   parameters: 
     azureServiceConnection: CI Test Connection
     resourceGroupName: CI Test RG
