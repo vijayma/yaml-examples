@@ -1,5 +1,5 @@
 variables:
   azureServiceConnection: CI Test Connection
-  resourceGroupName: AvidXchange CI RG
+  resourceGroupName: CI Test RG
   environment: CI
   

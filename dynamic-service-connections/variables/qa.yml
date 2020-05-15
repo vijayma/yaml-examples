@@ -1,4 +1,4 @@
 variables:
   azureServiceConnection: QA Test Connection
-  resourceGroupName: AvidXchange QA RG
+  resourceGroupName: QA Test RG
   environment: QA
