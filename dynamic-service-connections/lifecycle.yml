@@ -13,4 +13,5 @@ stages:
   displayName: 'Deploy To QA'
   jobs:
   - job: Deploy
+    steps:
     - template: environments/qa.yml
