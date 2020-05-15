@@ -1,4 +1,4 @@
-steps:
+jobs:
 - template: environment.yml
   parameters: 
     azureServiceConnection: CI Test Connection

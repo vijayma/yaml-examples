@@ -5,13 +5,9 @@ stages:
 - stage: CI
   displayName: 'Deploy To CI'
   jobs:
-  - job: Deploy
-    steps: 
-    - template: environments/ci.yml
+  - template: environments/ci.yml
 
 - stage: QA
   displayName: 'Deploy To QA'
   jobs:
-  - job: Deploy
-    steps:
-    - template: environments/qa.yml
+  - template: environments/qa.yml
