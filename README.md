@@ -1,3 +1,3 @@
 # yaml-examples
 
-Various examples with YAML
+Various examples with YAML.
