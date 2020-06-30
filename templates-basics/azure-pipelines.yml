@@ -1,0 +1,8 @@
+trigger: none
+
+extends:
+  template: base-template.yml
+  parameters:
+    usersteps:
+    - script: echo This is my first step
+    - script: echo This is my second step
