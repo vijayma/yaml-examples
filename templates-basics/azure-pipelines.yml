@@ -1,4 +1,5 @@
-trigger: none
+trigger:
+- master
 
 extends:
   template: base-template.yml
