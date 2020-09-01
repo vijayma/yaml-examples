@@ -2,7 +2,9 @@ parameters:
 - name: usersteps
   type: stepList
   default: []
-  
+
 steps:
+- script: echo "Pre-steps"
 - ${{ each step in parameters.usersteps }}:
   - ${{ step }}
+- script: echo "Post-steps"

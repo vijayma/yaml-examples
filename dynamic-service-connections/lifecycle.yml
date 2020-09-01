@@ -1,13 +1,46 @@
-variables:
-  system.debug: true
+parameters:
+- name: ci
+  type: object
+- name: qa
+  type: object
 
 stages:
 - stage: CI
   displayName: 'Deploy To CI'
   jobs:
-  - template: environments/ci.yml
+  - deployment: Deploy
+    displayName: Deploy
+    environment: CI
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: AzurePowerShell@5
+            displayName: 'Azure Powershell Test'
+            inputs:
+              azureSubscription: ${{ parameters.ci.azureServiceConnection }}
+              ScriptType: InlineScript
+              azurePowerShellVersion: LatestVersion
+              pwsh: true
+              Inline: |
+                Get-AzContext
 
 - stage: QA
   displayName: 'Deploy To QA'
   jobs:
-  - template: environments/qa.yml
+  - deployment: Deploy
+    displayName: Deploy
+    environment: QA
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: AzurePowerShell@5
+            displayName: 'Azure Powershell Test'
+            inputs:
+              azureSubscription: ${{ parameters.qa.azureServiceConnection }}
+              ScriptType: InlineScript
+              azurePowerShellVersion: LatestVersion
+              pwsh: true
+              Inline: |
+                Get-AzContext

@@ -2,3 +2,10 @@ trigger: none
 
 extends:
   template: lifecycle.yml
+  parameters:
+    ci:
+      azureServiceConnection: ciConnection
+      resourceGroup: ciRG
+    qa:
+      azureServiceConnection: qaConnection
+      resourceGroup: qaRG
