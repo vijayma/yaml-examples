@@ -6,6 +6,9 @@ resources:
         branches:
           include:
           - master
+        paths:
+          include:
+          - multi-repo/*
     - repository: second
       type: github
       name: vijayma/second-repo
