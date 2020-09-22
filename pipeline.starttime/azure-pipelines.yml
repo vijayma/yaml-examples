@@ -1,5 +1,8 @@
+variables:
+  starttime: $[format('{0:dd}', pipeline.startTime)]
+
 jobs:
 - job: A
-  condition: le(format('{0:dd}', pipeline.startTime), 7)  # if the day is <= 7
+  condition: le(variables.starttime, 7)  # if the day is <= 7
   steps:
   - script: echo hello world
