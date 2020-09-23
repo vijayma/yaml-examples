@@ -1,3 +1,6 @@
+trigger:
+- master
+
 stages:
 - stage: Build
   jobs:
@@ -19,6 +22,7 @@ stages:
     
 
 - stage: Prod
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   jobs:
   - job: Prod
     steps:
