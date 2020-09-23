@@ -1,3 +1,5 @@
+trigger: none
+
 jobs:
 - job: A
   condition: le(format('{0:dd}', pipeline.startTime), '07')  # if the day is <= 7
