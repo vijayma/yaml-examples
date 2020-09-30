@@ -1,5 +1,11 @@
 trigger: none
 
+parameters:
+  - name: test
+    default: true
+    displayName: test
+    type: boolean
+
 extends:
   template: base-template.yml
   parameters:
