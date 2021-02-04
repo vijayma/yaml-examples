@@ -1,0 +1,4 @@
+steps:
+- template: template.yml
+  parameters:
+    param: [1,2]
