@@ -1,7 +1,7 @@
 parameters:
 - name: counter
   displayName: Counter
-  type: integer
+  type: number
   default: 5
 
 jobs:
