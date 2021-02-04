@@ -7,6 +7,7 @@ parameters:
 jobs:
 - job: generate
   steps:
+  - checkout: none
   - bash: |
       $temp = ""
       for i in { 1..${{parameters.counter}} } do $temp += "'Param_$i': {'value': $i}, " done
@@ -19,4 +20,5 @@ jobs:
   strategy:
     matrix: $[ dependencies.generate.outputs['mtrx.param'] ]    
   steps:
+  - checkout: none
   - script: echo $(value)
