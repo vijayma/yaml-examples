@@ -10,7 +10,7 @@ jobs:
   - checkout: none
   - bash: |
       temp=""
-      for i in { 1..5 } 
+      for i in {1..5} 
       do 
         temp+="'Param_$i': {'value': $i}, "
       done
