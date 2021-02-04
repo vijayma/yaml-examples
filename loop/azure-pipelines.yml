@@ -1,4 +1,22 @@
-steps:
-- template: template.yml
-  parameters:
-    param: [1,2]
+parameters:
+- name: counter
+  displayName: Counter
+  type: integer
+  default: 5
+
+jobs:
+- job: generate
+  steps:
+  - bash: |
+      $temp = "" |
+      for i in { 1..${{parameters.counter}} } do $temp += "'Param_$i': {'value': $i}, " done |
+      echo $temp
+      echo "##vso[task.setVariable variable=param;isOutput=true]{'a':{'myvar':'A'}, 'b':{'myvar':'B'}}"
+    name: mtrx
+    
+- job: build
+  dependsOn: generate
+  strategy:
+    matrix: $[ dependencies.generate.outputs['mtrx.param'] ]    
+  steps:
+  - script: echo $(value)
