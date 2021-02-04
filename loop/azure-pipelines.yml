@@ -9,8 +9,6 @@ jobs:
   steps:
   - checkout: none
   - bash: |
-      temp=""; for i in { 1..${{parameters.counter}} } do temp += "'Param_$i': {'value': $i}, " done
-      echo "$temp"
       echo "##vso[task.setVariable variable=param;isOutput=true]{'a':{'myvar':'A'}, 'b':{'myvar':'B'}}"
     name: mtrx
     
