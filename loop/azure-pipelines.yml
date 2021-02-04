@@ -12,7 +12,7 @@ jobs:
       temp=""
       for i in {1..5} 
       do 
-        temp+='"Param_$i": {"value": $i}, '
+        temp+="Param_$i: {value: $i}, "
       done
       echo "##vso[task.setVariable variable=param;isOutput=true]$temp"
     name: mtrx
