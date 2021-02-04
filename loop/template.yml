@@ -1,5 +1,5 @@
 parameters:
-- param: []
+  param: []
 
 steps:
 - ${{ each p in parameters.param }}
