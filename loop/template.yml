@@ -1,6 +1,5 @@
 parameters:
-  param: []
+  param: 0
 
 steps:
-- ${{ each p in parameters.param }}:
-  - script: echo ${{ p }}
+- script: echo "Inside template: ${{parameters.param}"
