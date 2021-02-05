@@ -2,4 +2,4 @@ parameters:
   param: 0
 
 steps:
-- script: echo "Inside template: ${{parameters.param}}"
+- script: echo ${{parameters.param}}
