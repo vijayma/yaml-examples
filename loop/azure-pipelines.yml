@@ -27,3 +27,6 @@ jobs:
   steps:
   - checkout: none
   - script: echo $(value)
+  - template: template.yml
+    parameters:
+      param: $(value)
