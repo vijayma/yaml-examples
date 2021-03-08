@@ -1,12 +1,12 @@
 trigger: none
 
 schedules:
-- cron: "*/10 * * * *"
+- cron: "0 0 1 1,3,5,7,9,11 *"
   displayName: S1
   branches:
     include:
     - master
-- cron: "*/12 * * * *"
+- cron: "0 0 1 2,4,6,8,10,12 *"
   displayName: S2
   branches:
     include:
