@@ -1,0 +1,16 @@
+trigger: none
+
+schedules:
+- cron: "*/10 * * * *"
+  displayName: S1
+  branches:
+    include:
+    - master
+- cron: "*/12 * * * *"
+  displayName: S2
+  branches:
+    include:
+    - master
+
+steps:
+- script: echo
