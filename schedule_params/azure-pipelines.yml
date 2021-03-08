@@ -15,6 +15,6 @@ schedules:
 steps:
 - ${{ if eq(variables['Build.Reason'], 'Schedule') }}:
   - script: echo "Scheduled"
-- ${{ if neq(variables['Build.Reason'], 'Schedule') }}:
+- ${{ if eq(variables['Build.Reason'], 'Manual') }}:
   - script: echo "Manual"
 
