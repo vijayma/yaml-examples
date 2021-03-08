@@ -13,8 +13,8 @@ schedules:
     - master
 
 steps:
-- ${{ if eq(Build.Reason, 'Scheduled') }}:
+- ${{ if eq(variables['Build.Reason'], 'Schedule') }}:
   - script: echo "Scheduled"
-- ${{ if neq(Build.Reason, 'Scheduled') }}:
+- ${{ if neq(variables['Build.Reason'], 'Schedule') }}:
   - script: echo "Manual"
 
