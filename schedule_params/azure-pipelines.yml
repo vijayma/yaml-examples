@@ -13,4 +13,4 @@ schedules:
     - master
 
 steps:
-- script: echo
+- script: env
