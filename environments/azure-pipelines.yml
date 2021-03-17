@@ -31,16 +31,3 @@ stages:
         deploy:
           steps:
           - script: echo Hello world B
-
-- stage: C
-  jobs:
-  - deployment: C
-    displayName: deploy to C
-    pool:
-      vmImage: 'Ubuntu-latest'
-    environment: 'Vijay-C'
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - script: echo Hello world C
