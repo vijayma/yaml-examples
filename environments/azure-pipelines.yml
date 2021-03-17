@@ -3,8 +3,7 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-trigger:
-- master
+trigger: none
 
 stages:
 - stage: A
@@ -18,7 +17,7 @@ stages:
       runOnce:
         deploy:
           steps:
-          - script: echo Hello world
+          - script: echo Hello world A
           
 - stage: B
   jobs:
@@ -31,4 +30,4 @@ stages:
       runOnce:
         deploy:
           steps:
-          - script: echo Hello world
+          - script: echo Hello world B
