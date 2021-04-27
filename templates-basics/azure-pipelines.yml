@@ -4,5 +4,6 @@ extends:
   template: base-template.yml
   parameters:
     usersteps:
-    - script: echo This is my first step
+    - script: env
     - script: echo This is my second step
+    - script: echo This is the third step
