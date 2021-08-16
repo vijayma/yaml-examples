@@ -3,7 +3,8 @@ trigger: none
 pool:
   name: Ubuntu_Dev
 
-extends: template.yml
+extends: 
+  template: template.yml
   parameters:
     stages:
       - stage: 
