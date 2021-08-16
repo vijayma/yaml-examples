@@ -1,3 +1,10 @@
+# Runtime parameters
+parameters:
+- name : paramModelRepository
+  displayName: Name of the model repository
+  type: string
+  default: TestModelA
+
 trigger: none
 
 pool:
@@ -6,6 +13,8 @@ pool:
 extends: 
   template: template.yml
   parameters:
+    modelRepository: ${{ parameters.paramModelRepository }}
+    
     stages:
       - stage: 
         jobs:
