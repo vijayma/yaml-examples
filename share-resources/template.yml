@@ -1,0 +1,42 @@
+parameters:
+- name: stages
+  type: stageList
+  default: []
+
+- name: modelRepository
+  type: string
+
+resources:
+ repositories:
+   - repository: TestModelA
+     name: TestModelA
+     type: git
+   - repository: TestModelB
+     name: TestModelB
+     type: git
+   - repository: TestModelC
+     name: TestModelC
+     type: git
+
+variables:
+- template: global-variables.yml
+- template: local-variables.yml@${{ parameters.modelRepository }}
+
+stages:
+- ${{ each stage in parameters.stages }}:
+  - stage: ${{ stage.stage }}
+    ${{ each spair in stage }}:
+      ${{ if notIn(spair.key, 'jobs') }}:
+        ${{ spair.key }}: ${{ spair.value }}
+      ${{ if eq(spair.key, 'jobs') }}:
+        jobs:
+          - ${{ each job in spair.value }}:
+            - job: ${{ job.job }}
+              ${{ each jpair in job }}:
+                ${{ if notIn(jpair.key, 'steps') }}:
+                  ${{ jpair.key }}: ${{ jpair.value }}
+                ${{ if eq(jpair.key, 'steps') }}:
+                  steps:
+                  - ${{ each step in jpair.value }}:      
+                    - ${{ each s in step }}:
+                        ${{ s.key }}: ${{ s.value }}    

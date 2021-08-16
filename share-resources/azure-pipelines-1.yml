@@ -1,0 +1,62 @@
+trigger: none
+
+pool:
+  name: Ubuntu_Dev
+
+extends: template.yml
+  stages:
+    - stage: 
+      jobs:
+        - job: Dev_Stage_AKS_Model_Deployment
+          displayName: 'Dev Stage AKS Model Deployment'
+          steps:
+
+          - checkout: self
+            path: pipeline_repo/
+          - checkout: ${{ parameters.paramModelRepository }}
+                          
+          - task: AzureKeyVault@1
+            displayName: 'Azure KeyVault: Download Azure Key Vault Secrets from Product Deploy Key Vault'
+            inputs:
+              azureSubscription: 'Dev_Subscription'
+              KeyVaultName: '$(paramKeyVaultName)'
+              SecretsFilter: '*'
+              RunAsPreJob: true  
+
+          - task: PythonScript@0
+            displayName: 'Python Script: Create & Package Model'
+            inputs:
+              scriptPath: $(Agent.BuildDirectory)/pipeline_repo/ado_pipelines/scripts/publish_model_package.py
+              arguments: '--service_principal_id $(sp-appid) --service_principal_password $(sp-pwd)'
+            enabled: true
+
+          - task: Docker@2
+            displayName: 'Docker Task: Login to Build ACR'
+            enabled: true
+            inputs:
+              command: login
+              containerRegistry: 'Dev_ACR'
+
+          - task: Docker@2
+            displayName: 'Docker Task: Build Image'
+            enabled: true
+            inputs:
+              command: build
+              dockerfile: $(Agent.BuildDirectory)/$(paramModelName)/build/$(paramModelVersion)/Dockerfile
+              repository: $(paramACRImageName)
+              tags: |
+                      $(paramACRImageTag)
+            
+          - task: Docker@2
+            displayName: 'Docker Task: Push Image to Build ACR'
+            enabled: true
+            inputs:
+              command: push
+              repository: $(paramACRImageName)
+              tags: |
+                      $(paramACRImageTag)          
+
+          - script: |
+                  echo Hello World
+            displayName: 'Command Line Script: Hello World'
+            failOnStderr: true
