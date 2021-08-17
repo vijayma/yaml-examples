@@ -1,6 +1,6 @@
 # Runtime parameters
 parameters:
-- name : paramModelRepository
+- name : modelRepository
   displayName: Name of the model repository
   type: string
   default: A
@@ -10,7 +10,7 @@ trigger: none
 extends: 
   template: template.yml
   parameters:
-    modelRepository: ${{ parameters.paramModelRepository }}
+    modelRepository: ${{ parameters.modelRepository }}
     stages:
       - stage: 
         jobs:
@@ -20,7 +20,7 @@ extends:
 
             - checkout: self
               path: pipeline_repo/
-            - checkout: ${{ parameters.paramModelRepository }}                            
+            - checkout: ${{ parameters.modelRepository }}                            
             - script: |
                     echo Hello World
               displayName: 'Command Line Script: Hello World'

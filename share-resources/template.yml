@@ -15,24 +15,22 @@ resources:
      name: B
      type: git
 
-# variables:
-# - template: global-variables.yml
+variables:
+- template: global-variables.yml
 # - template: local-variables.yml@${{ parameters.modelRepository }}
 
 stages:
 - ${{ each stage in parameters.stages }}:
   - stage: ${{ stage.stage }}
-      # ${{ each spair in s }}:
-      # ${{ if notIn(spair.key, 'jobs') }}:
-      #   ${{ spair.key }}: ${{ spair.value }}
-      # ${{ if eq(spair.key, 'jobs') }}:
+      ${{ each pair in stage }}:
+        ${{ if notIn(pair.key, 'jobs') }}:
+          ${{ pair.key }}: ${{ pair.value }}
     jobs:
       - ${{ each job in stage.jobs }}:
         - job: ${{ job.job }}
-              # ${{ each jpair in j }}:
-              #   ${{ if notIn(jpair.key, 'steps') }}:
-              #     ${{ jpair.key }}: ${{ jpair.value }}
-              #   ${{ if eq(jpair.key, 'steps') }}:
+            ${{ each pair in job }}:
+              ${{ if notIn(pair.key, 'steps') }}:
+                ${{ pair.key }}: ${{ pair.value }}
           steps:
           - ${{ each step in job.steps }}:      
             - ${{ each st in step }}:
