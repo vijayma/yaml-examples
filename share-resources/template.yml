@@ -1,5 +1,5 @@
 parameters:
-- name: modelStages
+- name: stages
   type: stageList
   default: []
 
@@ -20,20 +20,20 @@ resources:
 # - template: local-variables.yml@${{ parameters.modelRepository }}
 
 stages:
-- ${{ each s in parameters.modelStages }}:
-  - stage: ${{ s.stage }}
-    ${{ each spair in s }}:
-      ${{ if notIn(spair.key, 'jobs') }}:
-        ${{ spair.key }}: ${{ spair.value }}
-      ${{ if eq(spair.key, 'jobs') }}:
-        jobs:
-          - ${{ each j in spair.value }}:
-            - job: ${{ j.job }}
-              ${{ each jpair in j }}:
-                ${{ if notIn(jpair.key, 'steps') }}:
-                  ${{ jpair.key }}: ${{ jpair.value }}
-                ${{ if eq(jpair.key, 'steps') }}:
-                  steps:
-                  - ${{ each step in jpair.value }}:      
-                    - ${{ each st in step }}:
-                        ${{ st.key }}: ${{ st.value }}    
+- ${{ each stage in parameters.stages }}:
+  - stage: ${{ stage.stage }}
+      # ${{ each spair in s }}:
+      # ${{ if notIn(spair.key, 'jobs') }}:
+      #   ${{ spair.key }}: ${{ spair.value }}
+      # ${{ if eq(spair.key, 'jobs') }}:
+    jobs:
+      - ${{ each job in stage.jobs }}:
+        - job: ${{ j.job }}
+              # ${{ each jpair in j }}:
+              #   ${{ if notIn(jpair.key, 'steps') }}:
+              #     ${{ jpair.key }}: ${{ jpair.value }}
+              #   ${{ if eq(jpair.key, 'steps') }}:
+          steps:
+          - ${{ each step in jobs.steps }}:      
+            - ${{ each st in step }}:
+                ${{ st.key }}: ${{ st.value }}    
