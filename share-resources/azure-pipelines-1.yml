@@ -7,6 +7,9 @@ parameters:
 
 trigger: none
 
+pool:
+  vmImage: 'windows-latest'
+
 extends: 
   template: template.yml
   parameters:
