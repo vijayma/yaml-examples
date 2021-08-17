@@ -1,10 +1,20 @@
+# Runtime parameters
+parameters:
+- name : paramModelRepository
+  displayName: Name of the model repository
+  type: string
+  default: TestModelA
+
 trigger: none
 
 pool:
   name: Ubuntu_Dev
 
-extends: template.yml
+extends: 
+  template: template.yml
   parameters:
+    modelRepository: ${{ parameters.paramModelRepository }}
+    
     stages:
       - stage: 
         jobs:
