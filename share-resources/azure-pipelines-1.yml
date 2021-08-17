@@ -3,7 +3,7 @@ parameters:
 - name : paramModelRepository
   displayName: Name of the model repository
   type: string
-  default: TestModelA
+  default: A
 
 trigger: none
 
