@@ -8,15 +8,12 @@ parameters:
 
 resources:
  repositories:
-   - repository: TestModelA
-     name: TestModelA
-     type: git
-   - repository: TestModelB
-     name: TestModelB
-     type: git
-   - repository: TestModelC
-     name: TestModelC
-     type: git
+   - repository: second-repo
+     name: second-repo
+     type: github
+   - repository: third-repo
+     name: third-repo
+     type: github
 
 variables:
 - template: global-variables.yml
