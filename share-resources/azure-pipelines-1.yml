@@ -7,9 +7,6 @@ parameters:
 
 trigger: none
 
-pool:
-  name: Ubuntu_Dev
-
 extends: 
   template: template.yml
   parameters:
