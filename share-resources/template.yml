@@ -8,12 +8,12 @@ parameters:
 
 resources:
  repositories:
-   - repository: second-repo
-     name: second-repo
-     type: github
-   - repository: third-repo
-     name: third-repo
-     type: github
+   - repository: A
+     name: A
+     type: git
+   - repository: B
+     name: B
+     type: git
 
 variables:
 - template: global-variables.yml
