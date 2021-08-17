@@ -28,12 +28,12 @@ stages:
       # ${{ if eq(spair.key, 'jobs') }}:
     jobs:
       - ${{ each job in stage.jobs }}:
-        - job: ${{ j.job }}
+        - job: ${{ job.job }}
               # ${{ each jpair in j }}:
               #   ${{ if notIn(jpair.key, 'steps') }}:
               #     ${{ jpair.key }}: ${{ jpair.value }}
               #   ${{ if eq(jpair.key, 'steps') }}:
           steps:
-          - ${{ each step in jobs.steps }}:      
+          - ${{ each step in job.steps }}:      
             - ${{ each st in step }}:
                 ${{ st.key }}: ${{ st.value }}    
