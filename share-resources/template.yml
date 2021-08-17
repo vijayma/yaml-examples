@@ -1,5 +1,5 @@
 parameters:
-- name: stages
+- name: modelStages
   type: stageList
   default: []
 
@@ -15,12 +15,12 @@ resources:
      name: B
      type: git
 
-variables:
-- template: global-variables.yml
-- template: local-variables.yml@${{ parameters.modelRepository }}
+# variables:
+# - template: global-variables.yml
+# - template: local-variables.yml@${{ parameters.modelRepository }}
 
 stages:
-- ${{ each s in parameters.stages }}:
+- ${{ each s in parameters.modelStages }}:
   - stage: ${{ s.stage }}
     ${{ each spair in s }}:
       ${{ if notIn(spair.key, 'jobs') }}:

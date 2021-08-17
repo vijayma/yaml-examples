@@ -14,8 +14,7 @@ extends:
   template: template.yml
   parameters:
     modelRepository: ${{ parameters.paramModelRepository }}
-    
-    stages:
+    modelStages:
       - stage: 
         jobs:
           - job: Dev_Stage_AKS_Model_Deployment
