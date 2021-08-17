@@ -22,14 +22,14 @@ variables:
 stages:
 - ${{ each stage in parameters.stages }}:
   - stage: ${{ stage.stage }}
-    # ${{ each pair in stage }}:
-    #   ${{ if notIn(pair.key, 'jobs') }}:
-    #     ${{ pair.key }}: ${{ pair.value }}
+    ${{ each pair in stage }}:
+      ${{ if notIn(pair.key, 'jobs', 'stage') }}:
+        ${{ pair.key }}: ${{ pair.value }}
     jobs:
       - ${{ each job in stage.jobs }}:
         - job: ${{ job.job }}
           ${{ each pair in job }}:
-            ${{ if notIn(pair.key, 'steps') }}:
+            ${{ if notIn(pair.key, 'steps', 'job') }}:
               ${{ pair.key }}: ${{ pair.value }}
           steps:
           - ${{ each step in job.steps }}:      
