@@ -22,6 +22,7 @@ stages:
 - stage: B
   jobs:
   - job: B
+    condition: False
     pool:
       vmImage: 'ubuntu-latest'
     steps:
