@@ -20,9 +20,9 @@ stages:
         inlineScript: 'az group list'
           
 - stage: B
+  condition: False
   jobs:
   - job: B
-    condition: False
     pool:
       vmImage: 'ubuntu-latest'
     steps:
