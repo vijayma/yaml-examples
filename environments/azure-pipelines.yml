@@ -20,9 +20,22 @@ stages:
         inlineScript: 'az group list'
           
 - stage: B
-  condition: False
   jobs:
   - job: B
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: AzureCLI@2
+      inputs:
+        azureSubscription: 'Build_Eng(3f56da7f-5953-4018-8ca8-e20dbfa0a7e2)'
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: 'az group list'
+
+- stage: C
+  dependsOn: A
+  jobs:
+  - job: C
     pool:
       vmImage: 'ubuntu-latest'
     steps:
