@@ -18,7 +18,6 @@ stages:
         scriptType: 'bash'
         scriptLocation: 'inlineScript'
         inlineScript: 'az group list'
-    - script: packer build
           
 - stage: B
   jobs:
