@@ -1,20 +1,16 @@
 trigger: none
 
-schedules:
-- cron: "0 0 1 1,3,5,7,9,11 *"
-  displayName: S1
-  branches:
-    include:
-    - master
-- cron: "0 0 1 2,4,6,8,10,12 *"
-  displayName: S2
-  branches:
-    include:
-    - master
-
 steps:
-- ${{ if eq(variables['Build.Reason'], 'Schedule') }}:
-  - script: echo "Scheduled"
-- ${{ if eq(variables['Build.Reason'], 'Manual') }}:
-  - script: echo "Manual"
+# Publish build artifacts
+# Publish build artifacts to Azure Pipelines or a Windows file share
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Pipeline.Workspace)'
+    ArtifactName: 'drop1'
+    publishLocation: 'Container'
 
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)'
+    artifact: 'drop2'
+    publishLocation: 'pipeline'
